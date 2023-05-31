@@ -37,7 +37,21 @@ todolist_schema = TodoListSchema(many = False)
 todolists_schema = TodoListSchema(many = True)
 
 #Routes
+@app.route("/todolist", methods = ["POST"])
+def add_todo():
+    try:
+        name = request.json['name']
+        description = request.json['description']
 
+        new_todo = TodoList(name = name, description = description)
+
+        db.session.add(new_todo)
+        db.session.commit()
+        
+        return todolist_schema.jsonify(new_todo)
+    
+    except Exception as e:
+        return jsonify({"Error" : "Something Broked"})
 
 
 if __name__ == "__main__":
