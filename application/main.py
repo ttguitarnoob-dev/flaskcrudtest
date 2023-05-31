@@ -32,6 +32,10 @@ class TodoListSchema(ma.Schema):
     class Meta:
         fields = ('name', 'description', 'completed', 'date_created')
 
+# Create instance of Schema
+todolist_schema = TodoListSchema(many = False)
+todolists_schema = TodoListSchema(many = True)
+
 #Routes
 
 
