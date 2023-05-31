@@ -15,6 +15,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #Initiate database object
 db = SQLAlchemy(app)
 
+#Create Marshmallow object
+ma = Marshmallow(app)
+
 #Create Database
 class TodoList(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -26,8 +29,14 @@ class TodoList(db.Model):
     def __repr__(self):
         return self.id
 
+#Create Schema
+class TodoListSchema(ma.Schema):
+    class Meta:
+        fields = ('name', 'description', 'completed', 'date_created')
 
-
+#Create instance of Schema
+todolist_schema = TodoListSchema(many = False)
+todolists_schema = TodoListSchema(many = True)
 
 if __name__ == "__main__":
     app.run(debug = True)
