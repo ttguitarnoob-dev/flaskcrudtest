@@ -9,7 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 #Set configs
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:/// database.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Initiate database object
@@ -54,6 +54,11 @@ def add_todo():
     
     except Exception as e:
         return jsonify({"Error" : "Wow that didn't work"}, e)
+    
+
+@app.route('/', methods = ["GET"])
+def get_things():
+    return jsonify({"msg" : "Hello from the get route"})
 
 if __name__ == "__main__":
     app.run(debug = True)
