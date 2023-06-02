@@ -60,6 +60,10 @@ def add_todo():
 def get_things():
     return jsonify({"msg" : "Hello from the get route"})
 
+@app.route('/put', methods = ["PUT"])
+def put_things():
+    return jsonify({"msg" : "Hello from the put route"})
+
 if __name__ == "__main__":
     app.run(debug = True)
 
