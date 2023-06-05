@@ -56,7 +56,7 @@ def add_todo():
         return jsonify({"Error" : "Wow that didn't work"}, e)
     
 
-@app.route('/', methods = ["GET"])
+@app.route('/', methods = ["GET"]) 
 def get_things():
     return jsonify({"msg" : "Hello from the get route"})
 
